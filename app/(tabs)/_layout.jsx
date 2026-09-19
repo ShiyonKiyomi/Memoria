@@ -15,11 +15,10 @@ export default function TabsLayout() {
         tabBarInactiveTintColor: colors.textMuted,
       }}
     >
-      <Tabs.Screen name="dashboard" options={{ title: "Dashboard" }} />
-      <Tabs.Screen name="calendar/index" options={{ title: "Calendar" }} />
-      <Tabs.Screen name="reminders/index" options={{ title: "Reminders" }} />
+      <Tabs.Screen name="dashboard" options={{ title: "Home" }} />
+      <Tabs.Screen name="calendar/index" options={{ title: "Schedule" }} />
+      <Tabs.Screen name="reminders" options={{ title: "Reminders" }} />
       <Tabs.Screen name="profile" options={{ title: "Profile" }} />
-      <Tabs.Screen name="notes/index" options={{ title: "Notes" }} />
     </Tabs>
   );
 }
