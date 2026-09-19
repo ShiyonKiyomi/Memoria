@@ -16,12 +16,10 @@ export default function TabsLayout() {
       }}
     >
       <Tabs.Screen name="dashboard" options={{ title: "Dashboard" }} />
-      <Tabs.Screen name="courses/index" options={{ title: "Courses" }} />
-      {/* "Tools" isn't a single route in the file tree (it's Calendar/Reminders/
-          Notes as separate top-level routes) — swap this tab for whichever
-          entry point the Figma tab bar actually points to, e.g. reminders or
-          a small tools-menu screen, once that's decided. */}
+      <Tabs.Screen name="calendar/index" options={{ title: "Calendar" }} />
+      <Tabs.Screen name="reminders/index" options={{ title: "Reminders" }} />
       <Tabs.Screen name="profile" options={{ title: "Profile" }} />
+      <Tabs.Screen name="notes/index" options={{ title: "Notes" }} />
     </Tabs>
   );
 }
