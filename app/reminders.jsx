@@ -1,14 +1,14 @@
-// app/index.jsx
-// STUB — app/index.jsx — app intro / entry point
-// Replace this with: import Welcome from "../src/screens/.../Welcome";
-//                     export default Welcome;
+// app/reminders.jsx
+// STUB — medication / task reminders
+// Replace this with: import Reminders from "../src/screens/.../Reminders";
+//                     export default Reminders;
 
 import { View, Text, StyleSheet } from "react-native";
 
-export default function WelcomeStub() {
+export default function RemindersStub() {
   return (
     <View style={styles.container}>
-      <Text style={styles.text}>Welcome</Text>
+      <Text style={styles.text}>Reminders</Text>
     </View>
   );
 }

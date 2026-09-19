@@ -1,14 +1,14 @@
-// app/index.jsx
-// STUB — app/index.jsx — app intro / entry point
-// Replace this with: import Welcome from "../src/screens/.../Welcome";
-//                     export default Welcome;
+// app/calendar/index.jsx
+// STUB — care schedule overview
+// Replace this with: import Calendar from "../src/screens/.../Calendar";
+//                     export default Calendar;
 
 import { View, Text, StyleSheet } from "react-native";
 
-export default function WelcomeStub() {
+export default function CalendarStub() {
   return (
     <View style={styles.container}>
-      <Text style={styles.text}>Welcome</Text>
+      <Text style={styles.text}>Calendar</Text>
     </View>
   );
 }

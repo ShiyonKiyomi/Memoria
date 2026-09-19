@@ -1,14 +1,14 @@
-// app/index.jsx
-// STUB — app/index.jsx — app intro / entry point
-// Replace this with: import Welcome from "../src/screens/.../Welcome";
-//                     export default Welcome;
+// app/settings.jsx
+// STUB — preferences, notifications, sign out
+// Replace this with: import Settings from "../src/screens/.../Settings";
+//                     export default Settings;
 
 import { View, Text, StyleSheet } from "react-native";
 
-export default function WelcomeStub() {
+export default function SettingsStub() {
   return (
     <View style={styles.container}>
-      <Text style={styles.text}>Welcome</Text>
+      <Text style={styles.text}>Settings</Text>
     </View>
   );
 }

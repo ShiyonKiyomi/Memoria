@@ -1,14 +1,14 @@
-// app/index.jsx
-// STUB — app/index.jsx — app intro / entry point
-// Replace this with: import Welcome from "../src/screens/.../Welcome";
-//                     export default Welcome;
+// app/notes/new.jsx
+// STUB — create a new note
+// Replace this with: import NoteEditor from "../src/screens/.../NoteEditor";
+//                     export default NoteEditor;
 
 import { View, Text, StyleSheet } from "react-native";
 
-export default function WelcomeStub() {
+export default function NoteEditorStub() {
   return (
     <View style={styles.container}>
-      <Text style={styles.text}>Welcome</Text>
+      <Text style={styles.text}>NoteEditor</Text>
     </View>
   );
 }

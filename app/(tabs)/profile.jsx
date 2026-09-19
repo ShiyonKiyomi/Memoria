@@ -1,14 +1,14 @@
-// app/index.jsx
-// STUB — app/index.jsx — app intro / entry point
-// Replace this with: import Welcome from "../src/screens/.../Welcome";
-//                     export default Welcome;
+// app/(tabs)/profile.jsx
+// STUB — caregiver + patient summary
+// Replace this with: import Profile from "../src/screens/.../Profile";
+//                     export default Profile;
 
 import { View, Text, StyleSheet } from "react-native";
 
-export default function WelcomeStub() {
+export default function ProfileStub() {
   return (
     <View style={styles.container}>
-      <Text style={styles.text}>Welcome</Text>
+      <Text style={styles.text}>Profile</Text>
     </View>
   );
 }
