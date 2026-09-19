@@ -12,7 +12,6 @@ export default function WelcomeStub() {
       <Text style={styles.text}>Welcome</Text>
       <Link href="/login">Go to Login</Link>
       <Link href="/register">Go to Register</Link>
-      <Link href="/patient-info">Go to Patient Info</Link>
       <Link href="/(tabs)/dashboard">Go to Dashboard</Link>
     </View>
   );

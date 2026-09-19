@@ -10,13 +10,8 @@ export default function DashboardStub() {
   return (
     <View style={styles.container}>
       <Text style={styles.text}>Dashboard</Text>
-      <Link href="/(tabs)/courses">Go to Courses</Link>
-      <Link href="/(tabs)/profile">Go to Profile</Link>
-      <Link href="/calendar">Go to Calendar</Link>
-      <Link href="/reminders">Go to Reminders</Link>
-      <Link href="/notes">Go to Notes</Link>
-      <Link href="/settings">Go to Settings</Link>
-      <Link href="/videos">Go to Videos</Link>
+      <Link href="/books">View Books</Link>
+      <Link href="/books">Continue Lesson</Link>
     </View>
   );
 }
