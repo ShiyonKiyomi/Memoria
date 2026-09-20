@@ -1,14 +1,16 @@
 // src/theme/typography.js
-// Font sizes are numbers. Font weights are STRINGS in React Native ("700", not 700).
-// fontFamily values below assume Poppins loaded via @expo-google-fonts/poppins —
-// swap the family name if Figma specifies a different typeface.
+// CORRECTION: the real typeface is Inter, not Poppins — confirmed by the
+// "Inter-Regular/Medium/SemiBold/Bold" fontFamily values in every exported
+// component. Update app/_layout.jsx's font loading to match (see note below).
 
 export const fontSizes = {
-  h1: 28,
-  h2: 22,
-  h3: 18,
-  body: 16,
-  caption: 13,
+  screenTitle: 22,   // top header bar text ("Dashboard", "Calendar")
+  sectionTitle: 20,  // section headings ("Reminders"); "Learnings" measures 24 — treat as an outlier, confirm with design if intentional
+  cardTitle: 18,     // card headline text ("Dementia and its Stages")
+  body: 15,          // calendar day numbers, row labels
+  bodyText: 14,      // paragraph copy, button labels, medication time
+  caption: 12,       // small eyebrow labels ("CURRENT BOOK")
+  tabLabel: 10,       // bottom nav bar labels
 };
 
 export const fontWeights = {
@@ -18,11 +20,12 @@ export const fontWeights = {
   bold: "700",
 };
 
-// Reference these by name once fonts are loaded with useFonts() in app/_layout.jsx.
-// React Native does NOT synthesize bold - each weight must be its own loaded font file.
+// Reference these by name once fonts are loaded with useFonts() in
+// app/_layout.jsx. React Native does NOT synthesize bold — each weight must
+// be its own loaded font file.
 export const fontFamilies = {
-  regular: "Poppins_400Regular",
-  medium: "Poppins_500Medium",
-  semibold: "Poppins_600SemiBold",
-  bold: "Poppins_700Bold",
+  regular: "Inter_400Regular",
+  medium: "Inter_500Medium",
+  semibold: "Inter_600SemiBold",
+  bold: "Inter_700Bold",
 };

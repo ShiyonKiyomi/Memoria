@@ -1,6 +1,5 @@
 // app/(tabs)/profile/index.jsx
-// STUB — caregiver + patient summary (moved here from app/(tabs)/profile.jsx
-// so it can have a nested "manage" screen underneath it)
+// STUB — caregiver + patient summary
 // Replace this with: import Profile from "../src/screens/.../Profile";
 //                     export default Profile;
 
@@ -11,8 +10,8 @@ export default function ProfileStub() {
   return (
     <View style={styles.container}>
       <Text style={styles.text}>Profile</Text>
-      <Link href="/settings">Go to Settings</Link>
-      <Link href="/patient-info">Go to Patient Info</Link>
+      <Link href="/profile/patient-info">Patient &amp; Guardian Info</Link>
+      <Link href="/profile/settings">Go to Settings</Link>
     </View>
   );
 }

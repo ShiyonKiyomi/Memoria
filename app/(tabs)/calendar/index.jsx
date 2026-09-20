@@ -1,16 +1,17 @@
-// app/calendar/index.jsx
-// STUB — care schedule overview
-// Replace this with: import Calendar from "../src/screens/.../Calendar";
-//                     export default Calendar;
+// app/(tabs)/calendar/index.jsx
+// STUB — SCHEDULE: calendar grid + reminders list combined on one screen,
+// per the revised Figma (reminders were merged into Calendar, no separate tab)
+// Replace this with: import Schedule from "../src/screens/.../Schedule";
+//                     export default Schedule;
 
 import { View, Text, StyleSheet } from "react-native";
 import { Link } from "expo-router";
 
-export default function CalendarStub() {
+export default function ScheduleStub() {
   return (
     <View style={styles.container}>
-      <Text style={styles.text}>Calendar</Text>
-      <Link href="/calendar/new">Go to New Event</Link>
+      <Text style={styles.text}>Schedule</Text>
+      <Link href="/calendar/new">Go to New Schedule</Link>
     </View>
   );
 }

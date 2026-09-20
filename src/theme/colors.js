@@ -1,17 +1,31 @@
 // src/theme/colors.js
-// Pulled from Figma Dev Mode (Inspect panel, platform selector set to React Native).
-// Update these hex values as you go through each frame in Section 3 of the guide —
-// these are placeholders based on the base palette named in the Implementation Plan.
+// REAL values extracted from Figma Dev Mode → React Native exports
+// (Dashboard, Calendar empty state, Notes). Replaces earlier placeholders.
 
 export const colors = {
-  primary: "#A665DF",     // primary purple - buttons, active states, accents
-  primaryDark: "#8A4FC2", // pressed/active variant of primary - measure from Figma if it exists
-  bgLight: "#EADBF9",     // light purple background (cards, sections)
-  bgLighter: "#FBF7FF",   // lightest background (screen background)
-  textDark: "#2A2A2A",    // primary body text
-  textMuted: "#6B6B6B",   // secondary / caption text
+  primary: "#A665DF",        // buttons, selected day, active states
+  primaryTint15: "rgba(166, 101, 223, 0.15)", // header bands (Dashboard/Calendar/Notes headers)
+  primaryTint10: "rgba(166, 101, 223, 0.10)", // calendar card background
+  primaryTint8: "rgba(166, 101, 223, 0.08)",  // "current book"/"current lesson" cards, empty-state card
+
+  bgScreen: "#FBF7FF",       // overall screen background
+  bgLavender: "#F3E9FC",     // month-row / selected-day-text-on-purple background
+  bgLavenderAlt: "#F8F3FD",  // medication row background
+
+  textDark: "#563979",       // headings, primary text (was #2A2A2A — corrected)
+  textMuted: "#A471D0",      // secondary/muted labels, tab-inactive text (was #6B6B6B — corrected)
+  textBody: "rgba(86, 57, 121, 0.85)", // paragraph/body copy (slightly translucent textDark)
+
   white: "#FFFFFF",
-  error: "#D64545",       // form validation / error states
-  success: "#3FA34D",     // confirmation states (e.g. reminder saved)
-  border: "#E0D0F2",      // subtle borders/dividers on light backgrounds
+
+  // One-off accent seen only on the Notes card background — not part of the
+  // main purple palette, keep it named separately rather than folding it
+  // into a generic "accent" token.
+  noteHighlight: "#F3ECC0",
+
+  // Not yet confirmed in an exported frame — keep placeholders until a
+  // frame with an error or success state is exported.
+  error: "#D64545",
+  success: "#3FA34D",
+  border: "#E0D0F2",
 };
