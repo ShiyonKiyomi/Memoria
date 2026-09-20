@@ -12,17 +12,6 @@
 //   import PatientGuardianForm from "../../../src/screens/auth/PatientGuardianForm";
 //   export default PatientGuardianForm;
 
-import { View, Text, StyleSheet } from "react-native";
+import PatientGuardianForm from "../../../src/screens/auth/PatientGuardianForm";
 
-export default function PatientInfoFromProfileStub() {
-  return (
-    <View style={styles.container}>
-      <Text style={styles.text}>Patient &amp; Guardian Info</Text>
-    </View>
-  );
-}
-
-const styles = StyleSheet.create({
-  container: { flex: 1, alignItems: "center", justifyContent: "center" },
-  text: { fontSize: 18, fontWeight: "600" },
-});
+export default PatientGuardianForm;

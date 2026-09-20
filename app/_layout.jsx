@@ -2,51 +2,35 @@
 // Root layout: loads fonts, holds the splash screen until ready, wraps the
 // whole app in SafeAreaProvider + AuthProvider, and defines the root Stack.
 
-import { useEffect, useCallback } from "react";
-import { Stack } from "expo-router";
+// app/_layout.jsx
+// Root layout: loads fonts, holds the splash screen until ready, waits for
+// auth state to resolve, and defines the root Stack. Each screen renders
+// its own header band, so the native Stack header is disabled everywhere.
+
+import { AuthProvider, useAuth } from "../src/context/AuthContext";
+import { ActivityIndicator, View } from "react-native";
 import { SafeAreaProvider } from "react-native-safe-area-context";
-import { StatusBar } from "expo-status-bar";
-import * as SplashScreen from "expo-splash-screen";
-import { useFonts } from "expo-font";
-import {
-  Poppins_400Regular,
-  Poppins_500Medium,
-  Poppins_600SemiBold,
-  Poppins_700Bold,
-} from "@expo-google-fonts/poppins";
+import { Stack } from "expo-router";
 
-import { AuthProvider } from "../src/context/AuthContext";
+function RootLayoutNav() {
+  const { loading } = useAuth();
 
-// Keep the splash screen visible while fonts load, so the first render
-// doesn't flash in the system font.
-SplashScreen.preventAutoHideAsync();
-
-export default function RootLayout() {
-  const [fontsLoaded, fontError] = useFonts({
-    Poppins_400Regular,
-    Poppins_500Medium,
-    Poppins_600SemiBold,
-    Poppins_700Bold,
-  });
-
-  useEffect(() => {
-    if (fontsLoaded || fontError) {
-      SplashScreen.hideAsync();
-    }
-  }, [fontsLoaded, fontError]);
-
-  if (!fontsLoaded && !fontError) {
-    return null; // splash screen is still showing
+  if (loading) {
+    return (
+      <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
+        <ActivityIndicator size="large" />
+      </View>
+    );
   }
 
+  return <Stack screenOptions={{ headerShown: false }} />;
+}
+
+export default function RootLayout() {
   return (
     <SafeAreaProvider>
       <AuthProvider>
-        <StatusBar style="dark" />
-        <Stack screenOptions={{ headerShown: false }}>
-          {/* headerShown: false everywhere — Header.jsx (Role 3, Section 4)
-              is the only header that should ever render on screen. */}
-        </Stack>
+        <RootLayoutNav />
       </AuthProvider>
     </SafeAreaProvider>
   );

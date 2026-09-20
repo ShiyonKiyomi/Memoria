@@ -17,10 +17,21 @@
 // within that tab), return to whichever tab you visited previously rather
 // than jumping straight to the first tab.
 
-import { Tabs } from "expo-router";
+import { Redirect, Tabs } from "expo-router";
+import { useAuth } from "../../src/context/AuthContext";
 import { colors } from "../../src/theme/colors";
 
 export default function TabsLayout() {
+  const { user, loading } = useAuth();
+
+  if (loading) {
+    return null;
+  }
+
+  if (!user) {
+    return <Redirect href="/login" />;
+  }
+
   return (
     <Tabs
       backBehavior="history"
