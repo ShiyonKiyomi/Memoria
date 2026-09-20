@@ -1,6 +1,7 @@
 import * as React from "react";
 import { Image, Pressable, StyleSheet, Text, View } from "react-native";
 import { useRouter } from "expo-router";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 // Ported from the Figma "Welcome Interface" export. The GET STARTED button
 // is now a real Pressable wired to navigation instead of a static View.
@@ -8,7 +9,7 @@ export default function WelcomeScreen() {
   const router = useRouter();
 
   return (
-    <View style={[styles.welcomeInterfaceRevised, styles.getStartedButtonFlexBox]}>
+    <SafeAreaView style={[styles.welcomeInterfaceRevised, styles.getStartedButtonFlexBox]}>
       {/* TODO: no image source was included in the Figma export — add the
           real illustration/asset here, e.g. source={require("../../../assets/welcome.png")} */}
       <Image style={styles.welcomeImageIcon} resizeMode="cover" />
@@ -28,7 +29,7 @@ export default function WelcomeScreen() {
       >
         <Text style={styles.getStarted}>GET STARTED</Text>
       </Pressable>
-    </View>
+    </SafeAreaView>
   );
 }
 

@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useState } from "react";
 import { useRouter } from "expo-router";
-import { ActivityIndicator, StyleSheet, View } from "react-native";
+import { ActivityIndicator, Pressable, StyleSheet, Text, View } from "react-native";
 import { supabase } from "../../lib/supabaseClient";
 import { useAuth } from "../../context/AuthContext";
 import { colors } from "../../theme/colors";
@@ -29,23 +29,25 @@ export default function PatientInfoGate({ afterSave = "dashboard" }) {
   const { user, loading: authLoading } = useAuth();
   const [status, setStatus] = useState("loading"); // "loading" | "form" | "info"
   const [patient, setPatient] = useState(null);
+  const [loadError, setLoadError] = useState("");
 
   const checkPatient = useCallback(async () => {
     if (!user?.id) return;
     setStatus("loading");
+    setLoadError("");
     const { data, error } = await supabase
       .from("patients")
       .select("*")
       .eq("user_id", user.id)
+      .order("created_at", { ascending: false })
+      .limit(1)
       .maybeSingle();
 
     if (error) {
-      // Can't tell either way — fall back to the form rather than getting
-      // stuck on a spinner. Any real problem (e.g. RLS) will surface again
-      // clearly when SAVE is pressed.
       console.warn("Failed to load patient/guardian info:", error.message);
       setPatient(null);
-      setStatus("form");
+      setLoadError(error.message);
+      setStatus("error");
       return;
     }
 
@@ -74,6 +76,18 @@ export default function PatientInfoGate({ afterSave = "dashboard" }) {
     return <PersonInfo patient={patient} onUpdated={setPatient} />;
   }
 
+  if (status === "error") {
+    return (
+      <View style={styles.errorScreen}>
+        <Text style={styles.errorTitle}>Could not load saved information</Text>
+        <Text style={styles.errorMessage}>{loadError}</Text>
+        <Pressable accessibilityRole="button" onPress={checkPatient} style={styles.retryButton}>
+          <Text style={styles.retryText}>Try again</Text>
+        </Pressable>
+      </View>
+    );
+  }
+
   return (
     <PatientGuardianForm
       onSaved={(row) => {
@@ -99,4 +113,15 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     backgroundColor: colors.bgScreen,
   },
+  errorScreen: {
+    alignItems: "center",
+    backgroundColor: colors.bgScreen,
+    flex: 1,
+    justifyContent: "center",
+    padding: 24,
+  },
+  errorTitle: { color: colors.textDark, fontSize: 20, fontWeight: "700", textAlign: "center" },
+  errorMessage: { color: colors.textBody, fontSize: 13, lineHeight: 19, marginTop: 10, textAlign: "center" },
+  retryButton: { backgroundColor: colors.primary, borderRadius: 9, marginTop: 20, paddingHorizontal: 22, paddingVertical: 13 },
+  retryText: { color: colors.white, fontSize: 14, fontWeight: "700" },
 });

@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useRouter } from "expo-router";
 import { KeyboardAvoidingView, Platform, Pressable, ScrollView, StyleSheet, Text, TextInput, View } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
 import { supabase } from "../../lib/supabaseClient";
 import { useAuth } from "../../context/AuthContext";
 import { colors } from "../../theme/colors";
@@ -46,7 +47,7 @@ export default function PatientGuardianForm({ onSaved } = {}) {
       setErrorMessage("Complete the guardian's name and relationship.");
       return;
     }
-    if (!user?.id || !user?.email) {
+    if (!user?.id) {
       setErrorMessage("Your session has expired. Please sign in again.");
       return;
     }
@@ -63,7 +64,7 @@ export default function PatientGuardianForm({ onSaved } = {}) {
         guardian_date_of_birth: guardianDateOfBirth.trim() || null,
         guardian_relationship: guardianRelationship.trim(),
         guardian_phone: guardianPhone.trim() || null,
-        guardian_email: user.email, // auto-filled from the session, never typed by the user
+        guardian_email: user.email ?? null, // Anonymous guests do not have an email.
       })
       .select()
       .single();
@@ -82,7 +83,7 @@ export default function PatientGuardianForm({ onSaved } = {}) {
   }
 
   return (
-    <View style={styles.screen}>
+    <SafeAreaView style={styles.screen}>
       <View style={styles.header}>
         <View style={styles.steps}>
           <View style={[styles.bar, styles.barActive]} />
@@ -137,7 +138,7 @@ export default function PatientGuardianForm({ onSaved } = {}) {
           )}
         </ScrollView>
       </KeyboardAvoidingView>
-    </View>
+    </SafeAreaView>
   );
 }
 

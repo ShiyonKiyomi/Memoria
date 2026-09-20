@@ -48,11 +48,11 @@ export default function TabsLayout() {
 
       {/* Setting href to null completely removes the tab button while
           keeping the route alive inside that tab's own stack. */}
-      <Tabs.Screen name="calendar/new" options={{ href: null }} />
-      <Tabs.Screen name="notes/new" options={{ href: null }} />
-      <Tabs.Screen name="notes/[noteId]" options={{ href: null }} />
-      <Tabs.Screen name="profile/settings" options={{ href: null }} />
-      <Tabs.Screen name="profile/patient-info" options={{ href: null }} />
+      <Tabs.Screen name="calendar/new" options={{ href: null, tabBarStyle: { display: "none" } }} />
+      <Tabs.Screen name="notes/new" options={{ href: null, tabBarStyle: { display: "none" } }} />
+      <Tabs.Screen name="notes/[noteId]" options={{ href: null, tabBarStyle: { display: "none" } }} />
+      <Tabs.Screen name="profile/settings" options={{ href: null, tabBarStyle: { display: "none" } }} />
+      <Tabs.Screen name="profile/patient-info" options={{ href: null, tabBarStyle: { display: "none" } }} />
     </Tabs>
   );
 }

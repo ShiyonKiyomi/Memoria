@@ -1,3 +1,5 @@
-import PatientGuardianForm from "../src/screens/auth/PatientGuardianForm";
+import PatientInfoGate from "../src/screens/profile/PatientInfoGate";
 
-export default PatientGuardianForm;
+export default function PatientInfoRoute() {
+	return <PatientInfoGate afterSave="dashboard" />;
+}

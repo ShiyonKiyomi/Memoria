@@ -23,10 +23,16 @@ export function AuthProvider({ children }) {
 
   useEffect(() => {
     // Read whatever session is already persisted in AsyncStorage
-    supabase.auth.getSession().then(({ data: { session } }) => {
-      setUser(session?.user ?? null);
-      setLoading(false);
-    });
+    supabase.auth
+      .getSession()
+      .then(({ data: { session } }) => {
+        setUser(session?.user ?? null);
+      })
+      .catch((error) => {
+        console.warn("Failed to restore the saved session:", error.message);
+        setUser(null);
+      })
+      .finally(() => setLoading(false));
 
     // Keep user state in sync with sign-in/sign-out/token-refresh events
     const { data: authListener } = supabase.auth.onAuthStateChange(

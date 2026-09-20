@@ -11,6 +11,7 @@ import {
   TextInput,
   View,
 } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
 import { supabase } from "../../lib/supabaseClient";
 import { colors } from "../../theme/colors";
 
@@ -138,7 +139,8 @@ export default function AuthScreen({ initialMode = "login" }) {
   const isSignUp = mode === "signup";
 
   return (
-    <KeyboardAvoidingView behavior={Platform.OS === "ios" ? "padding" : undefined} style={styles.screen}>
+    <SafeAreaView style={styles.screen}>
+      <KeyboardAvoidingView behavior={Platform.OS === "ios" ? "padding" : undefined} style={styles.keyboardAvoiding}>
       <ScrollView contentContainerStyle={styles.content} keyboardShouldPersistTaps="handled">
         <Text style={styles.welcome}>Welcome</Text>
 
@@ -221,7 +223,8 @@ export default function AuthScreen({ initialMode = "login" }) {
           <Text style={styles.dontWantAn}>Don't want an account? Continue as guest</Text>
         </Pressable>
       </ScrollView>
-    </KeyboardAvoidingView>
+      </KeyboardAvoidingView>
+    </SafeAreaView>
   );
 }
 
@@ -245,6 +248,7 @@ const styles = StyleSheet.create({
     backgroundColor: colors.bgScreen,
     flex: 1,
   },
+  keyboardAvoiding: { flex: 1 },
   content: {
     flexGrow: 1,
     paddingHorizontal: 28,

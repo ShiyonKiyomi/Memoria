@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { KeyboardAvoidingView, Platform, Pressable, ScrollView, StyleSheet, Text, TextInput, View } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
 import { supabase } from "../../lib/supabaseClient";
 import { useAuth } from "../../context/AuthContext";
 import { colors } from "../../theme/colors";
@@ -83,7 +84,7 @@ export default function PersonInfo({ patient, onUpdated }) {
   const isGuardian = tab === "guardian";
 
   return (
-    <View style={styles.screen}>
+    <SafeAreaView style={styles.screen}>
       <View style={styles.header}>
         <Text style={styles.backArrow}>‹</Text>
         <Text style={styles.title}>{isGuardian ? "Guardian Profile" : "Patient Profile"}</Text>
@@ -106,12 +107,6 @@ export default function PersonInfo({ patient, onUpdated }) {
           >
             <Text style={[styles.switchText, !isGuardian && styles.switchTextActive]}>Patient</Text>
           </Pressable>
-          {/* Multiple patients per guardian isn't supported by the data
-              model yet (one `patients` row per account) — kept as a visual
-              placeholder matching the Figma frame, not wired up. */}
-          <View style={styles.addTab}>
-            <Text style={styles.addText}>+</Text>
-          </View>
         </View>
       </View>
 
@@ -150,7 +145,7 @@ export default function PersonInfo({ patient, onUpdated }) {
           </Pressable>
         </ScrollView>
       </KeyboardAvoidingView>
-    </View>
+    </SafeAreaView>
   );
 }
 
