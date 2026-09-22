@@ -18,6 +18,12 @@ export const colors = {
 
   white: "#FFFFFF",
 
+  // Referenced as colors.placeholder in AuthScreen/PatientGuardianForm/
+  // PersonInfo's placeholderTextColor but never defined there — was
+  // silently falling back to RN's default gray. Derived as a light tint
+  // of textDark to stay in the same purple family as the rest of the palette.
+  placeholder: "rgba(86, 57, 121, 0.35)",
+  
   // One-off accent seen only on the Notes card background — not part of the
   // main purple palette, keep it named separately rather than folding it
   // into a generic "accent" token.
