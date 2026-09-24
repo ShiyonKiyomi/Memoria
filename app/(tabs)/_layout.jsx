@@ -19,10 +19,39 @@
 
 import { Redirect, Tabs } from "expo-router";
 import { useAuth } from "../../src/context/AuthContext";
-import { colors } from "../../src/theme/colors";
+import { Text } from "react-native";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
+import { colors, radius, spacing, fontSizes, fontWeights } from "../../src/theme";
+import { Ionicons } from "@expo/vector-icons";
+
+//replace Icons when new ones are imported in the files
+const ICONS = {
+  dashboard: ["home-outline", "home"],
+  "calendar/index": ["calendar-outline", "calendar"],
+  "notes/index": ["document-text-outline", "document-text"],
+  "profile/index": ["person-outline", "person"],
+};
+
+function tabIcon(routeKey) {
+  return function TabIcon({ focused, color }) {
+    const [outline, filled] = ICONS[routeKey];
+    return <Ionicons name={focused ? filled : outline} size={18} color={color} />;
+  };
+}
+
+function tabLabel(text) {
+  return function TabLabel({ focused, color }) {
+    return (
+      <Text style={[labelStyles.label, { color }, focused && labelStyles.labelActive]}>
+        {text}
+      </Text>
+    );
+  };
+}
 
 export default function TabsLayout() {
   const { user, loading } = useAuth();
+  const insets = useSafeAreaInsets();
 
   if (loading) {
     return null;
@@ -39,12 +68,24 @@ export default function TabsLayout() {
         headerShown: false, // Figma header components render inside each screen instead
         tabBarActiveTintColor: colors.primary,
         tabBarInactiveTintColor: colors.textMuted,
+        tabBarStyle: {
+          position: "absolute",
+          left: spacing.md,
+          right: spacing.md,
+          bottom: insets.bottom + spacing.sm,
+          height: 56,
+          borderRadius: radius.xl,
+          backgroundColor: colors.primaryTint10,
+          borderTopWidth: 0,
+          elevation: 0,
+          paddingHorizontal: spacing.sm,
+        },
       }}
     >
-      <Tabs.Screen name="dashboard" options={{ title: "Home" }} />
-      <Tabs.Screen name="calendar/index" options={{ title: "Schedule" }} />
-      <Tabs.Screen name="notes/index" options={{ title: "Notes" }} />
-      <Tabs.Screen name="profile/index" options={{ title: "Profile" }} />
+      <Tabs.Screen name="dashboard" options={{ tabBarIcon: tabIcon("dashboard"), tabBarLabel: tabLabel("dashboard") }} />
+      <Tabs.Screen name="calendar/index" options={{ tabBarIcon: tabIcon("calendar/index"), tabBarLabel: tabLabel("schedule") }} />
+      <Tabs.Screen name="notes/index" options={{ tabBarIcon: tabIcon("notes/index"), tabBarLabel: tabLabel("notes") }} />
+      <Tabs.Screen name="profile/index" options={{ tabBarIcon: tabIcon("profile/index"), tabBarLabel: tabLabel("profile") }} />
 
       {/* Setting href to null completely removes the tab button while
           keeping the route alive inside that tab's own stack. */}
@@ -56,3 +97,16 @@ export default function TabsLayout() {
     </Tabs>
   );
 }
+
+const labelStyles = {
+  label: {
+    fontSize: fontSizes.tabLabel,
+    fontFamily: "Inter-Medium",
+    fontWeight: fontWeights.medium,
+    textAlign: "center",
+  },
+  labelActive: {
+    fontFamily: "Inter-Bold",
+    fontWeight: fontWeights.bold,
+  },
+};
