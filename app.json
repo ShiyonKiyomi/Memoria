@@ -1,8 +1,3 @@
-//Adjusted file, may need: npx expo install expo-splash-screen 
-//Download the splash-icon I sent and rename it placeholder-splash.png
-//Put it in assets folder
-
-
 {
   "expo": {
   "name": "Memoria",
