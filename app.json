@@ -1,29 +1,44 @@
+//Adjusted file, may need: npx expo install expo-splash-screen 
+//Download the splash-icon I sent and rename it placeholder-splash.png
+//Put it in assets folder
+
+
 {
   "expo": {
-    "name": "Memoria",
-    "slug": "memoria-app",
-    "scheme": "memoria",
-    "version": "1.0.0",
-    "orientation": "portrait",
-    "icon": "./assets/icon.png",
-    "userInterfaceStyle": "light",
-    "splash": {
-      "image": "./assets/splash.png",
-      "resizeMode": "contain",
+  "name": "Memoria",
+  "slug": "memoria-app",
+  "scheme": "memoria",
+  "version": "1.0.0",
+  "orientation": "portrait",
+  "icon": "./assets/placeholder-splash.png",
+  "userInterfaceStyle": "automatic",
+  "assetBundlePatterns": [
+    "**/*"
+  ],
+  "ios": {
+    "supportsTablet": true,
+    "bundleIdentifier": "com.memoria.app"
+  },
+  "android": {
+    "package": "com.memoria.app",
+    "adaptiveIcon": {
+      "foregroundImage": "./assets/placeholder-splash.png",
       "backgroundColor": "#FBF7FF"
-    },
-    "assetBundlePatterns": ["**/*"],
-    "ios": {
-      "supportsTablet": true,
-      "bundleIdentifier": "com.memoria.app"
-    },
-    "android": {
-      "package": "com.memoria.app",
-      "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
+    }
+  },
+  "plugins": [
+    "expo-router",
+    [
+      "expo-splash-screen",
+      {
+        "image": "./assets/placeholder-splash.png",
+        "resizeMode": "contain",
         "backgroundColor": "#FBF7FF"
       }
-    },
-    "plugins": ["expo-router"]
-  }
+    ]
+  ]
 }
+}
+
+
+
